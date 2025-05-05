@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import './App.css';
 import AnimatedBackground from './components/AnimatedBackground.tsx';
-import prompt from './prompt.ts';
+import { generateVisualPrompt } from './prompt.ts';
 
 const App = () => {
   const [inputText, setInputText] = useState('');
@@ -28,7 +28,7 @@ const App = () => {
         throw new Error('API key no configurada. Agrega VITE_OPENROUTER_KEY en tu .env');
       }
 
-      const prompt1: string = prompt(detailLevel, inputText);
+      const prompt1: string = generateVisualPrompt(detailLevel, inputText);
 
       const response = await fetch(
         'https://openrouter.ai/api/v1/chat/completions',

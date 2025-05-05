@@ -1,4 +1,4 @@
-export default prompt = (detailLevel: 'bajo' | 'medio' | 'alto', inputText: string): string => {
+export const generateVisualPrompt = (detailLevel: 'bajo' | 'medio' | 'alto', inputText: string): string => {
   const levelInstructions = {
     bajo: `Utiliza solo formas geométricas básicas (círculos, cuadrados, triángulos). Indica el tamaño relativo (grande, mediano, pequeño) y la posición de cada forma en la composición. Menciona colores solo si se trata de objetos específicos con un color característico (como “casa roja” o personajes reconocibles por color). No incluyas texturas ni detalles adicionales. Limita la respuesta a 2-3 frases claras.`,
 
