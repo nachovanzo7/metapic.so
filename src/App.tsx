@@ -98,7 +98,7 @@ const App = () => {
             animate={{ scale: 1 }}
             transition={{ duration: 0.3 }}
           >
-            Síntesis
+            Metapic.so
           </motion.h1>
           <motion.p
             initial={{ opacity: 0 }}
