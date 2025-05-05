@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import './App.css';
 import AnimatedBackground from './components/AnimatedBackground.tsx';
-import { prompt } from './prompt.d.ts';
+import { prompt } from './prompt';
 
 const App = () => {
   const [inputText, setInputText] = useState('');
