@@ -92,13 +92,23 @@ const App = () => {
         transition={{ duration: 0.5 }}
         className="card"
       >
-        <motion.h1
-          initial={{ scale: 0.9 }}
-          animate={{ scale: 1 }}
-          transition={{ duration: 0.3 }}
-        >
-          Síntesis
-        </motion.h1>
+        <div className="title-container">
+          <motion.h1
+            initial={{ scale: 0.9 }}
+            animate={{ scale: 1 }}
+            transition={{ duration: 0.3 }}
+          >
+            Síntesis
+          </motion.h1>
+          <motion.p
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 0.7 }}
+            transition={{ delay: 0.3 }}
+            style={{color: 'white'}}
+          >
+            Transforma conceptos en descripciones visuales
+          </motion.p>
+        </div>
 
         <motion.input
           type="text"
