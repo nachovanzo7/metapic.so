@@ -20,7 +20,7 @@ const AnimatedBackground = () => {
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
 
-    // Ajustar canvas al tamaño de la pantalla
+    //Ajuste al tamaño de la screen
     const resizeCanvas = () => {
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
@@ -50,8 +50,7 @@ const AnimatedBackground = () => {
       shapes.current = newShapes;
     };
 
-    // Detectar colisiones entre formas
-    // Detectar colisiones entre formas con rebote elástico
+    // Detectar colisiones y rebote
 const checkCollisions = () => {
     const shapesArr = shapes.current;
   
@@ -67,7 +66,7 @@ const checkCollisions = () => {
         const minDist = (A.size + B.size) / 2;
   
         if (dist < minDist) {
-          // --- 1. Separar las formas para que no queden superpuestas ---
+          // Separar las formas para que no se superpongan
           const overlap = minDist - dist;
           const ux = dx / dist;
           const uy = dy / dist;
@@ -76,16 +75,15 @@ const checkCollisions = () => {
           B.x += ux * (overlap / 2);
           B.y += uy * (overlap / 2);
   
-          // --- 2. Cálculo de velocidades tras rebote elástico ---
-          // Masa proporcional al área (opcional)
+          // Velocidad de rebote luego de rebotar
           const mA = (A.size ** 2);
           const mB = (B.size ** 2);
   
-          // Proyección de velocidades sobre la línea de impacto
+          // Proyección de velocidades sobre linea de impacto
           const vA = A.speedX * ux + A.speedY * uy;
           const vB = B.speedX * ux + B.speedY * uy;
   
-          // Velocidades resultantes en la dirección de la línea de impacto
+          // Velocidades resultantes en la dirección de línea de impacto
           const vA_final = (vA * (mA - mB) + 2 * mB * vB) / (mA + mB);
           const vB_final = (vB * (mB - mA) + 2 * mA * vA) / (mA + mB);
   
@@ -111,8 +109,8 @@ const checkCollisions = () => {
       ctx.save();
       ctx.translate(shape.x, shape.y);
       ctx.rotate((shape.rotation * Math.PI) / 180);
-      ctx.fillStyle = 'rgba(0, 0, 0, 0.8)'; // Figuras negras con opacidad
-      ctx.strokeStyle = 'rgba(255, 255, 255, 0.2)'; // Borde blanco tenue
+      ctx.fillStyle = 'rgba(0, 0, 0, 0.8)';
+      ctx.strokeStyle = 'rgba(255, 255, 255, 0.2)';
       ctx.lineWidth = 1;
 
       switch (shape.type) {
@@ -142,17 +140,16 @@ const checkCollisions = () => {
       ctx.restore();
     };
 
-    // Animación de las formas
+    // Animar formas
     const animate = () => {
       if (!canvas || !ctx) return;
 
-      // Fondo con ligero efecto de rastro
+      // Efecto de rastro
       ctx.fillStyle = 'rgba(10, 10, 10, 0.1)';
       ctx.fillRect(0, 0, canvas.width, canvas.height);
 
       // Actualizar y dibujar formas
       shapes.current.forEach((shape) => {
-        // Actualizar posición
         shape.x += shape.speedX;
         shape.y += shape.speedY;
         shape.rotation += shape.rotationSpeed;
@@ -171,7 +168,6 @@ const checkCollisions = () => {
         drawShape(shape);
       });
 
-      // Verificar colisiones
       checkCollisions();
 
       requestAnimationFrame(animate);

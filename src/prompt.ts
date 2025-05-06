@@ -1,22 +1,34 @@
 export const generateVisualPrompt = (detailLevel: 'bajo' | 'medio' | 'alto', inputText: string): string => {
   const levelInstructions = {
-    bajo: `Utiliza solo formas geométricas básicas (círculos, cuadrados, triángulos). Indica el tamaño relativo (grande, mediano, pequeño) y la posición de cada forma en la composición. Menciona colores solo si se trata de objetos específicos con un color característico (como “casa roja” o personajes reconocibles por color). No incluyas texturas ni detalles adicionales. Limita la respuesta a 2-3 frases claras.`,
-
-    medio: `Combina formas básicas con ligeras variaciones (curvas, ángulos suaves, pequeñas irregularidades). Agrega 2 o 3 características visuales distintivas (como textura simple o distribución inusual). Especifica el tamaño relativo y posición de las formas. Sugiere colores cuando sean relevantes. Usa 3-4 frases descriptivas.`,
-
-    alto: `Incluye todos los detalles visuales clave: dimensiones aproximadas, proporciones entre formas, sombras, textura visual, profundidad y relaciones espaciales. Indica colores concretos (nombre o valor HEX) para cada sección importante. Describe claramente el tamaño y ubicación precisa de cada elemento. Redáctalo en 4-5 frases detalladas sin mencionar el objeto original.`
+      bajo: `
+  Eres un profesor de diseño gráfico. 
+  Describe de forma ultracompacta la figura de "${inputText}" usando solo:
+  - Formas geométricas básicas (círculos, triángulos, rectángulos).
+  - Relaciones espaciales (encima, al costado, dentro).
+  No agregues color salvo que sea imprescindible para identificarlo. 
+  Devuelve únicamente la descripción; sin saludos ni conclusiones.
+  `.trim(),
+  
+      medio: `
+  Eres un profesor de diseño gráfico. 
+  Describe la figura de "${inputText}" usando:
+  - Combinación de varias formas geométricas.
+  - Detalles estructurales (grupos, base, divisiones simples).
+  - Referencias espaciales claras (superpuestos, alineados, unidos).
+  Menciona color si aporta a la identificación. 
+  Devuelve únicamente la descripción; sin saludos ni conclusiones.
+  `.trim(),
+  
+      alto: `
+  Eres un profesor de diseño gráfico. 
+  Describe con alto nivel de detalle la figura de "${inputText}" usando:
+  - Múltiples formas geométricas y proporciones relativas.
+  - Estructuras internas y texturas (líneas, sombreados).
+  - Elementos adicionales (sombra, fondo, relieves) para enriquecer.
+  Indica colores y sus ubicaciones exactas. 
+  Devuelve únicamente la descripción; sin saludos ni conclusiones.
+  `.trim(),
+    };
+  
+    return levelInstructions[detailLevel];
   };
-
-  return `Eres un sintetizador visual. Tu tarea es describir cómo representar visualmente el concepto: "${inputText}", según el nivel de detalle indicado.
-
-**Pautas generales:**
-1. Analiza las partes clave del concepto (por ejemplo, “toro” → cuernos) e inclúyelas sí o sí.
-2. Comienza por la forma general y luego describe los elementos distintivos.
-3. Usa lenguaje natural, sin estructuras rígidas ni comillas.
-4. Nunca nombres directamente el objeto original ni menciones el nivel de detalle.
-
-**Nivel actual: ${detailLevel.toUpperCase()}**
-${levelInstructions[detailLevel]}
-
-Ahora describe "${inputText}" siguiendo exactamente estas indicaciones:`;
-};
